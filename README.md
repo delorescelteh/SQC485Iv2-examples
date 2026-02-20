@@ -30,6 +30,7 @@
 
 ## TODO
 
-- [ ] 用 `siliqs_esp32` 寫 SX1262 LoRa ping-pong 範例（待確認 library API）
-- [ ] RS485 SN65HVD1780 通訊/Modbus 範例
+- [x] SX1262 LoRa ping-pong 範例（`arduino/examples/03_lora_pingpong_sx1262/`）
+- [x] RS485 SN65HVD1780 send-bytes 範例（`arduino/examples/04_rs485_send_bytes/`）
+- [ ] Modbus master/slave 範例（下一步）
 - [ ] 固定節點（太陽能）實作指南與安全注意事項
