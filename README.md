@@ -1,22 +1,35 @@
-# SQC485Iv2 examples
+# SQC485Iv2-examples
 
-這個專案用來收集 **SQC485Iv2** 的「可重現範例」與「DIY 固定節點（太陽能）最佳實務」。
+這個 repo 收集 **SQC485Iv2** 的範例程式與協作指南。
 
-## Repo / Docs
+> 新方向：本 repo 以 **我們自己的 Arduino library：`livinghuang/siliqs_esp32`** 為核心，不依賴 Meshtastic-device framework。
 
-- 文件（GitBook）：https://github.com/delorescelteh/SQC485Iv2-meshtastic
-- 韌體（fork + releases）：https://github.com/delorescelteh/SQC485Iv2-Meshtastic-device
+## 主要依賴（Key library）
 
-## 內容結構
+- https://github.com/livinghuang/siliqs_esp32
 
-- `examples/`：示例（例如：出廠刷機、Region/Channel 設定、廣播/直傳測試、RS485/IO 範例等）
-- `hardware/`：硬體相關筆記（接線、接口定義、供電/充電注意事項）
-- `firmware/`：韌體相關（env、build/release 指令、版本策略）
-- `tools/`：實用腳本（例如：一鍵燒錄、多節點測試腳本）
-- `docs/`：可對外文件草稿/圖表
+本 repo 以 git submodule 方式引入：
+
+- `arduino/lib/siliqs_esp32`
+
+## Arduino 範例
+
+在 `arduino/examples/`：
+
+- `00_siliqs_setup_smoke/`：確認 `siliqs_esp32_setup()` 可正常跑
+- `01_led_gpio2/`：GPIO2 LED 閃爍（**active-low**）
+- `02_button_gpio9/`：GPIO9 按鍵讀取（Serial 印出）
+
+## 協作指南
+
+- `docs/AI_HUMAN_COWORK_GUIDE.md`
+
+## 舊的 Meshtastic 流程
+
+若你需要參考先前 Meshtastic 相關流程/腳本，請看 `legacy_meshtastic/`（如果有）。
 
 ## TODO
 
-- [ ] 收斂一套「固定節點」建議：防水盒、天線、走線、供電/電池安全
-- [ ] 補上 RS485 端口範例（若要提供 Modbus/感測器）
-- [ ] 補上 WiFi/OTA 策略（若需要）
+- [ ] 用 `siliqs_esp32` 寫 SX1262 LoRa ping-pong 範例（待確認 library API）
+- [ ] RS485 SN65HVD1780 通訊/Modbus 範例
+- [ ] 固定節點（太陽能）實作指南與安全注意事項
