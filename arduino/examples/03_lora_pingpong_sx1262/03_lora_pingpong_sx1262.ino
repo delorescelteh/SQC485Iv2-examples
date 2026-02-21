@@ -1,6 +1,13 @@
 #include "bsp.h"
 #include "siliqs_esp32.h"
 
+// Set this per-node when flashing two boards:
+// - Initiator: sends the first packet
+// - Responder: waits for the first packet
+#ifndef IS_INITIATOR
+#define IS_INITIATOR 1
+#endif
+
 lora_params_settings params = {
     .DIO1 = LORA_DIO1,
     .BUSY = LORA_BUSY,
@@ -9,7 +16,7 @@ lora_params_settings params = {
     .MOSI = LORA_MOSI,
     .SCK = LORA_SCK,
     .NSS = LORA_NSS,
-    .FREQUENCY = 923.0,   // TW (AS923) typical center; adjust as needed
+    .FREQUENCY = 922.0,   // AS923 (vendor default); change if needed
     .BANDWIDTH = 125.0,
     .SF = 7,
     .CR = 5,
@@ -34,8 +41,17 @@ void setup()
         }
     }
 
-    Serial.println(F("LoRa initialized. Sending first message..."));
-    loraService.sendMessage(message);
+    Serial.println(F("LoRa initialized."));
+
+    if (IS_INITIATOR)
+    {
+        Serial.println(F("Initiator: sending first message..."));
+        loraService.sendMessage(message);
+    }
+    else
+    {
+        Serial.println(F("Responder: waiting for first message..."));
+    }
 }
 
 void loop()
